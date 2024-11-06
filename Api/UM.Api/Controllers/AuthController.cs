@@ -40,9 +40,8 @@ namespace UM.Api.Controllers
             _configuration = configuration;
             _mapper = mapper;
         }
-
+        [Route("api/register")]
         [HttpPost]
-        [Route("Register")]
         public async Task<IActionResult> Register(RegisterModel registerModel)
         {
             var user = new ApplicationUser()
@@ -64,8 +63,8 @@ namespace UM.Api.Controllers
             return Ok();
         }
 
+        [Route("api/login")]
         [HttpPost]
-        [Route("Login")]
         public async Task<IActionResult> Login([FromBody] LoginModel loginModel)
         {
             var result = await _signInManager.PasswordSignInAsync(loginModel.Email, loginModel.Password,true,false);
