@@ -19,10 +19,10 @@ namespace UM.Infrastructure.Configuration
                 .HasMaxLength(250);
 
 
-            //builder.HasOne(x => x.CreatedByUser)
-            //   .WithOne(y => y.CreatedByPost)
-            //   .HasForeignKey<Post>(z => z.CreatedBy)
-            //   .OnDelete(DeleteBehavior.Restrict);
+            builder.HasOne(x => x.CreatedByUser)
+               .WithOne(y => y.CreatedByUser)
+               .HasForeignKey<Post>(z => z.CreatedBy)
+               .OnDelete(DeleteBehavior.Restrict);
 
             //builder.HasOne(x => x.UpdateByUser)
             //   .WithOne(y => y.UpdatedByPost)

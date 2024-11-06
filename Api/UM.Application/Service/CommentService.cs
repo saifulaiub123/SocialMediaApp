@@ -29,14 +29,24 @@ namespace UM.Application.Service
             var data = _mapper.Map<Comment>(comment);
             await _commentRepository.Insert(data);
         }
-        public async Task Update(CommentModel comment)
+        
+        public async Task<Result> Update(CommentModel comment)
         {
             var existingData = await _commentRepository.FindBy(x => x.Id == comment.Id && !x.IsDeleted);
-            if (existingData != null)
+            if (existingData == null)
             {
-                //existingData.Name = comment.Name;
-                await _commentRepository.Update(existingData);
+                return Result.NotFound;
             }
+            if (existingData.CreatedBy != _currentUser.User.Id)
+            {
+                return Result.Forbidden;
+            }
+            
+            existingData.Description = comment.Description;
+            await _commentRepository.Update(existingData);
+
+            return Result.Success;
+            
         }
         public async Task Delete(int id)
         {

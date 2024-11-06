@@ -9,6 +9,7 @@ namespace UM.Infrastructure.Dependency
         public static IServiceCollection AddRepositories(this IServiceCollection services)
         {
             #region Repositories
+            services.AddScoped<IVoteRepository, VoteRepository>();
             services.AddScoped<ICommentRepository, CommentRepository>();
             services.AddScoped<IFollowRepository, FollowRepository>();
             services.AddScoped<IOtpRepository, OtpRepository>();

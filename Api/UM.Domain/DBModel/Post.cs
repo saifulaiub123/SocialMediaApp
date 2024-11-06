@@ -8,7 +8,9 @@ namespace UM.Domain.DBModel
         public string Description { get; set; }
         public bool IsDeleted { get; set; }
 
+        public ApplicationUser CreatedByUser { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }
+        public virtual ICollection<Vote> Votes { get; set; }
 
     }
 }

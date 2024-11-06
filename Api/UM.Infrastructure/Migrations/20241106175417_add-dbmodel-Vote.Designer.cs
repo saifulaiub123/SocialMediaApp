@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using UM.Infrastructure.DBContext;
 
@@ -11,9 +12,11 @@ using UM.Infrastructure.DBContext;
 namespace UM.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241106175417_add-dbmodel-Vote")]
+    partial class adddbmodelVote
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -597,17 +600,6 @@ namespace UM.Infrastructure.Migrations
                     b.Navigation("UserFollowedBy");
                 });
 
-            modelBuilder.Entity("UM.Domain.DBModel.Post", b =>
-                {
-                    b.HasOne("UM.Domain.DBModel.ApplicationUser", "CreatedByUser")
-                        .WithOne("CreatedByUser")
-                        .HasForeignKey("UM.Domain.DBModel.Post", "CreatedBy")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("CreatedByUser");
-                });
-
             modelBuilder.Entity("UM.Domain.DBModel.UserRole", b =>
                 {
                     b.HasOne("UM.Domain.DBModel.Role", "Role")
@@ -652,9 +644,6 @@ namespace UM.Infrastructure.Migrations
             modelBuilder.Entity("UM.Domain.DBModel.ApplicationUser", b =>
                 {
                     b.Navigation("Claims");
-
-                    b.Navigation("CreatedByUser")
-                        .IsRequired();
 
                     b.Navigation("FollowedByUser");
 
