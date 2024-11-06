@@ -5,7 +5,7 @@ using UM.Domain.Model;
 
 namespace UM.Api.Controllers
 {
-    [Route("api/post")]
+    [Route("api")]
     [Authorize]
     public class PostController : BaseController
     {
@@ -30,19 +30,31 @@ namespace UM.Api.Controllers
             var result = await _postService.GetAll();
             return Ok(result);
         }
-        [HttpGet("{id}")]
+        [HttpGet("post/{id}")]
         public async Task<IActionResult> GetById([FromRoute] int id)
         {
             var result = await _postService.GetById(id);
             return Ok(result);
         }
-        [HttpPut("{id}")]
+        [HttpGet("my-posts")]
+        public async Task<IActionResult> MyPosts()
+        {
+            var result = await _postService.MyPosts();
+            return Ok(result);
+        }
+        [HttpGet("my-feed")]
+        public async Task<IActionResult> MyFeed()
+        {
+            var result = await _postService.MyPosts();
+            return Ok(result);
+        }
+        [HttpPut("post/{id}")]
         public async Task<IActionResult> Update([FromRoute] int id, [FromBody] PostModel post)
         {
             await _postService.Update(post);
             return Ok();
         }
-        [HttpDelete("{id}")]
+        [HttpDelete("post/{id}")]
         public async Task<IActionResult> Delete([FromRoute] int id)
         {
             await _postService.Delete(id);

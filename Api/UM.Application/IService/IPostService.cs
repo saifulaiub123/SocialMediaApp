@@ -5,7 +5,8 @@ namespace UM.Application.IService
 {
     public interface IPostService
     {
-        Task<List<PostViewModel >> GetAll();
+        Task<List<PostViewModel>> GetAll();
+        Task<List<PostViewModel>> MyPosts();
         Task<PostViewModel> GetById(int id);
         Task Add(PostModel post);
         Task Update(PostModel post);

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using UM.Application.IService;
 using UM.Domain.DBModel;
+using UM.Domain.IEntity;
 using UM.Domain.IRepository;
 using UM.Domain.Model;
 using UM.Domain.ViewModel;
@@ -11,12 +12,14 @@ namespace UM.Application.Service
     public class PostService : IPostService
     {
         private readonly IPostRepository _postRepository;
+        private readonly ICurrentUser _currentUser;
         private readonly IMapper _mapper;
 
-        public PostService(IPostRepository postRepository, IMapper mapper)
+        public PostService(IPostRepository postRepository, IMapper mapper, ICurrentUser currentUser)
         {
             _postRepository = postRepository;
             _mapper = mapper;
+            _currentUser = currentUser;
         }
 
         public async Task Add(PostModel post)
@@ -52,6 +55,13 @@ namespace UM.Application.Service
         public async Task<List<PostViewModel>> GetAll()
         {
             var data = await _postRepository.GetAll(x => !x.IsDeleted);
+            var result = _mapper.Map<List<PostViewModel>>(data);
+            return result.OrderByDescending(x => x.DateCreated).ToList();
+        }
+
+        public async Task<List<PostViewModel>> MyPosts()
+        {
+            var data = await _postRepository.GetAll(x => !x.IsDeleted && x.CreatedBy == _currentUser.User.Id);
             var result = _mapper.Map<List<PostViewModel>>(data);
             return result.OrderByDescending(x => x.DateCreated).ToList();
         }
