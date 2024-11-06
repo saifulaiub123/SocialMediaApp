@@ -24,9 +24,10 @@ namespace UM.Api.Controllers
         
         [HttpPost]
         [Route("comment/{id}")]
-        public async Task<ActionResult> Add([FromRoute] int id)
+        public async Task<ActionResult> Add([FromRoute] int id, [FromBody] CommentModel comment)
         {
-            await _commentService.Add(new CommentModel() { PostId = id });
+            comment.PostId = id;
+            await _commentService.Add(comment);
             return Ok();
         }
 
@@ -40,9 +41,11 @@ namespace UM.Api.Controllers
 
         [HttpPatch]
         [Route("comment/{id}/{commentId}")]
-        public async Task<ActionResult> Update([FromRoute] int id, [FromRoute] int commentId)
+        public async Task<ActionResult> Update([FromRoute] int id, [FromRoute] int commentId, [FromBody] CommentModel comment)
         {
-            var result = await _commentService.Update(new CommentModel() { PostId = id, Id = commentId });
+            comment.PostId = id;
+            comment.Id = commentId;
+            var result = await _commentService.Update(comment);
             switch (result)
             {
                 case Application.Enum.Result.Forbidden:

@@ -15,7 +15,7 @@ namespace UM.Api.Controllers
         {
             _postService = postService;
         }
-        
+        [Route("post")]
         [HttpPost]
         public async Task<IActionResult> Add([FromBody] PostModel post)
         {
@@ -24,6 +24,7 @@ namespace UM.Api.Controllers
             return Ok();
 
         }
+        [Route("post")]
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
@@ -45,12 +46,13 @@ namespace UM.Api.Controllers
         [HttpGet("my-feed")]
         public async Task<IActionResult> MyFeed()
         {
-            var result = await _postService.MyPosts();
+            var result = await _postService.MyFeed();
             return Ok(result);
         }
         [HttpPut("post/{id}")]
         public async Task<IActionResult> Update([FromRoute] int id, [FromBody] PostModel post)
         {
+            post.Id = id;
             await _postService.Update(post);
             return Ok();
         }
