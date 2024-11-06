@@ -36,14 +36,14 @@ namespace UM.Api.Controllers
             var result = await _postService.GetById(id);
             return Ok(result);
         }
-        [HttpPut]
-        public async Task<IActionResult> Update([FromBody] PostModel post)
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update([FromRoute] int id, [FromBody] PostModel post)
         {
             await _postService.Update(post);
             return Ok();
         }
-        [HttpDelete]
-        public async Task<IActionResult> Delete([FromQuery] int id)
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete([FromRoute] int id)
         {
             await _postService.Delete(id);
             return Ok();
