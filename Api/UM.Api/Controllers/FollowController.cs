@@ -6,6 +6,7 @@ using UM.Domain.Model;
 
 namespace UM.Api.Controllers
 {
+    [Route("api")]
     [Authorize]
     public class FollowController : BaseController
     {
@@ -19,27 +20,27 @@ namespace UM.Api.Controllers
         }
 
         [HttpPost]
-        [Route("Add")]
-        public async Task<ActionResult> Add([FromBody] FollowModel model)
+        [Route("follow/{userId}")]
+        public async Task<ActionResult> Add([FromRoute] int userId)
         {
-            await _followService.Add(model);
+            await _followService.Add(new FollowModel() { UserId = userId });
             return Ok();
         }
 
         [HttpGet]
-        [Route("GetAll")]
-        public async Task<ActionResult> GetAll()
+        [Route("my-followers")]
+        public async Task<ActionResult> MyFollowers()
         {
-            var result = await _followService.GetAll();
+            var result = await _followService.MyFollowers();
             return Ok(result);
         }
 
 
         [HttpDelete]
-        [Route("Delete")]
-        public async Task<ActionResult> Delete([FromQuery] int id)
+        [Route("follow/{userId}")]
+        public async Task<ActionResult> Delete([FromQuery] int userId)
         {
-            await _followService.Delete(id);
+            await _followService.Delete(userId);
             return Ok();
         }
     }

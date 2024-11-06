@@ -6,8 +6,9 @@ namespace UM.Application.IService
     public interface IFollowService
     {
         Task<List<FollowViewModel>> GetAll();
+        Task<List<FollowViewModel>> MyFollowers();
         Task Add(FollowModel follow);
-        Task Delete(int id); 
+        Task Delete(int userId); 
     }
 }
 
