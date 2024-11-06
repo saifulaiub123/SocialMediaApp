@@ -23,8 +23,14 @@ namespace UM.Api.Controllers
         [Route("follow/{userId}")]
         public async Task<ActionResult> Add([FromRoute] int userId)
         {
-            await _followService.Add(new FollowModel() { UserId = userId });
-            return Ok();
+            var result = await _followService.Add(new FollowModel() { UserId = userId });
+            switch (result)
+            {
+                case Application.Enum.Result.Forbidden:
+                    return Forbid("User can't follow themselves");
+                default:
+                    return Ok();
+            }
         }
 
         [HttpGet]

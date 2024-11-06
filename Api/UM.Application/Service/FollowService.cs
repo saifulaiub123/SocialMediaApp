@@ -1,5 +1,6 @@
 
 using AutoMapper;
+using UM.Application.Enum;
 using UM.Application.IService;
 using UM.Domain.DBModel;
 using UM.Domain.IEntity;
@@ -22,11 +23,15 @@ namespace UM.Application.Service
             _currentUser = currentUser;
         }
 
-        public async Task Add(FollowModel follow)
+        public async Task<Result> Add(FollowModel follow)
         {
+            if (follow.UserId == _currentUser.User.Id) 
+                return Result.Forbidden;
             var data = _mapper.Map<Follow>(follow);
             data.FollowedBy = _currentUser.User.Id;
             await _followRepository.Insert(data);
+
+            return Result.Success;
         }
         
         public async Task Delete(int userId)

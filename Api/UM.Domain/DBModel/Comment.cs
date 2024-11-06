@@ -2,13 +2,11 @@
 
 namespace UM.Domain.DBModel
 {
-    public class Post : BaseModel<int>
+    public class Comment : BaseModel<int>
     {
-        public string Title { get; set; }
         public string Description { get; set; }
+        public int PostId { get; set; }
         public bool IsDeleted { get; set; }
-
-        public virtual ICollection<Comment> Comments { get; set; }
-
+        public virtual Post Post { get; set; }
     }
 }

@@ -1,3 +1,4 @@
+using UM.Application.Enum;
 using UM.Domain.Model;
 using UM.Domain.ViewModel;
 
@@ -7,7 +8,7 @@ namespace UM.Application.IService
     {
         Task<List<FollowViewModel>> GetAll();
         Task<List<FollowViewModel>> MyFollowers();
-        Task Add(FollowModel follow);
+        Task<Result> Add(FollowModel follow);
         Task Delete(int userId); 
     }
 }

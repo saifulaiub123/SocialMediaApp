@@ -11,6 +11,7 @@ namespace UM.Application.Dependency
         public static IServiceCollection AddServices(this IServiceCollection services)
         {
             #region Services
+            services.AddScoped<ICommentService, CommentService>();
             services.AddScoped<IFollowService, FollowService>();
 
             services.AddScoped<IOtpService, OtpService>();
