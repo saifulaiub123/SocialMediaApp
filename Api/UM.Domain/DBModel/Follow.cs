@@ -7,5 +7,10 @@ namespace UM.Domain.DBModel
         public int UserId { get; set; }
         public int FollowedBy { get; set; }
         public bool IsDeleted { get; set; }
+
+        public virtual ApplicationUser User { get; set; }
+        public virtual ApplicationUser UserFollowedBy { get; set; }
+
+
     }
 }

@@ -15,17 +15,17 @@ namespace UM.Infrastructure.Configuration
 
             builder.Property(x => x.IsDeleted)
                 .HasDefaultValue(false);
-          
 
-            //builder.HasOne(x => x.CreatedByUser)
-            //   .WithOne(y => y.CreatedByFollow)
-            //   .HasForeignKey<Follow>(z => z.CreatedBy)
-            //   .OnDelete(DeleteBehavior.Restrict);
 
-            //builder.HasOne(x => x.UpdateByUser)
-            //   .WithOne(y => y.UpdatedByFollow)
-            //   .HasForeignKey<Follow>(z => z.UpdatedBy)
-            //   .OnDelete(DeleteBehavior.Restrict);
+            builder.HasOne(x => x.User)
+               .WithMany(y => y.UserToFollow)
+               .HasForeignKey(z => z.UserId)
+               .OnDelete(DeleteBehavior.Restrict);
+
+            builder.HasOne(x => x.UserFollowedBy)
+              .WithMany(y => y.FollowedByUser)
+              .HasForeignKey(z => z.FollowedBy)
+              .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }
