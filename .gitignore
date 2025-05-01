@@ -29,8 +29,10 @@ x86/
 bld/
 [Bb]in/
 [Oo]bj/
+[Oo]ut/
 [Ll]og/
 [Ll]ogs/
+[Dd]ist/
 
 # Visual Studio 2015/2017 cache/options directory
 .vs/
@@ -239,13 +241,6 @@ ClientBin/
 *.publishsettings
 orleans.codegen.cs
 
-# Including strong name files can present a security risk
-# (https://github.com/github/gitignore/pull/2483#issue-259490424)
-#*.snk
-
-# Since there are multiple workflows, uncomment next line to ignore bower_components
-# (https://github.com/github/gitignore/pull/1529#issuecomment-104372622)
-#bower_components/
 
 # RIA/Silverlight projects
 Generated_Code/
@@ -283,6 +278,7 @@ FakesAssemblies/
 # Node.js Tools for Visual Studio
 .ntvs_analysis.dat
 node_modules/
+.angular/
 
 # Visual Studio 6 build log
 *.plg
@@ -357,11 +353,7 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
-/Rent2Go/Rent2Go.Api/appsettings.Development.json
+
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
-/src/UnicefEducationMIS.Web/Data
-/Documents/Beneficiary Import Template.xlsx
-/Documents/Facility_Versioned_Data_Sample.xlsx
-**.log
-**.log.txt
+/src/Admin/.angular/cache/18.2.12/multikart-admin
