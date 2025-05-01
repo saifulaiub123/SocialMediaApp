@@ -101,18 +101,19 @@ export class TenantAddEditComponent implements OnInit {
         name: this.form.value.name,
         description: this.form.value.description,
         subscriptionPlanId: this.form.value.subscriptionPlanId,
+        expiresIn: this.form.value.expiresIn,
       };
 
       if (tenant.id > 0) {
         this.tenantService.updateTenant(tenant).subscribe((res: ApiResponse<TenantViewModel>) => {
-          this.submitted = false;
+          // this.submitted = false;
           if (res.isSuccess) {
             this.router.navigate(['/feature/tenant/list']);
           }
         });
       } else {
         this.tenantService.addTenant(tenant).subscribe((res: ApiResponse<TenantViewModel>) => {
-          this.submitted = false;
+          // this.submitted = false;
           if (res.isSuccess) {
             this.router.navigate(['/feature/tenant/list']);
           }

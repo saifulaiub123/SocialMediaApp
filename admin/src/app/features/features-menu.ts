@@ -5,7 +5,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
     title: 'Tenant',
     icon: 'keypad-outline',
     link: '/feature/tenant',
-    home: true,
+    home: false,
     children: [
       {
         title: 'Add Tenant',
