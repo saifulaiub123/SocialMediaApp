@@ -8,9 +8,9 @@ export const MENU_ITEMS: NbMenuItem[] = [
     home: true,
   },
   {
-    title: 'Booking',
+    title: 'Tenant',
     icon: 'keypad-outline',
-    link: '/feature/booking',
+    link: '/feature/tenant',
     home: true,
   },
   {

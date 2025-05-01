@@ -11,11 +11,11 @@ const routes: Routes = [{
     //   path: 'dashboard',
     //   component: DashboardComponent,
     // },
-    // {
-    //   path: 'booking',
-    //   loadChildren: () => import('./booking/booking.module')
-    //     .then(m => m.BookingModule),
-    // },
+    {
+      path: 'tenant',
+      loadChildren: () => import('./tenant/tenant.module')
+        .then(m => m.TenantModule),
+    },
     // {
     //   path: 'operation',
     //   loadChildren: () => import('./operation/operation.module')

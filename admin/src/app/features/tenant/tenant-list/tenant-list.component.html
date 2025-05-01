@@ -1,0 +1,14 @@
+<nb-card>
+  <nb-card-header>
+    Tenant List <button nbButton size="medium" style="float: right" (click)="navigateToAddTenant()"><nb-icon icon="plus"></nb-icon>Add Tenant</button>
+  </nb-card-header>
+
+  <nb-card-body>
+    <ng2-smart-table
+      [settings]="settings"
+      [source]="source"
+      (custom)="onAction($event)"
+      >
+    </ng2-smart-table>
+  </nb-card-body>
+</nb-card>

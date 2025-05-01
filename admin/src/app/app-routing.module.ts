@@ -22,7 +22,7 @@ export const routes: Routes = [
   },
   {
     path: 'feature',
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
     loadChildren: () => import('./features/features.module').then(m => m.FeaturesModule),
   },
   // {

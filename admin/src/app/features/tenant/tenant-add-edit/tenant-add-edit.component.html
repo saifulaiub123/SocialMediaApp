@@ -1,0 +1,37 @@
+<div class="row">
+  <div class="col-md-6">
+    <nb-card>
+      <nb-card-header>Add Tenant</nb-card-header>
+      <nb-card-body>
+        <form>
+          <div class="form-group row">
+            <label for="inputEmail1" class="label col-sm-3 col-form-label">Name</label>
+            <div class="col-sm-9">
+              <input type="text" nbInput fullWidth id="inputName" placeholder="Name">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="inputEmail1" class="label col-sm-3 col-form-label">Description</label>
+            <div class="col-sm-9">
+              <input type="text" nbInput fullWidth id="inputDescription" placeholder="Description">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-3 label">Subscription Plan</label>
+            <div class="col-sm-9">
+              <nb-radio-group>
+                <nb-radio>Option 1</nb-radio>
+                <nb-radio>Option 2</nb-radio>
+                <nb-radio disabled>Disabled Option</nb-radio>
+              </nb-radio-group>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="offset-sm-3 col-sm-9">
+              <button type="submit" nbButton status="primary">Sign in</button>
+            </div>
+          </div>
+        </form>
+      </nb-card-body>
+    </nb-card>
+</div>

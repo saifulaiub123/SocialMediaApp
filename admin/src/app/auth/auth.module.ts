@@ -35,6 +35,7 @@ import { NgxAuthComponent } from './auth.component';
 import { RegisterComponent } from './components/register/register.component';
 import { DateHttpInterceptor } from '../@core/interceptor/date-http-interceptor';
 import { ComponentsModule } from "../@components/components.module";
+import { CamelCaseInterceptor } from '../@core/interceptor/camel-case.interceptor';
 
 const GUARDS = [AuthGuard, AdminGuard];
 const PIPES = [AuthPipe];
@@ -95,6 +96,7 @@ export class AuthModule {
         { provide: NB_AUTH_TOKEN_INTERCEPTOR_FILTER, useValue: filterInterceptorRequest },
         { provide: HTTP_INTERCEPTORS, useClass: NbAuthJWTInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+        // { provide: HTTP_INTERCEPTORS, useClass: CamelCaseInterceptor, multi: true },
         // { provide: HTTP_INTERCEPTORS, useClass: DateHttpInterceptor, multi: true },
 
         ...GUARDS],
