@@ -20,11 +20,11 @@ export const routes: Routes = [
     path: 'auth',
     loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule),
   },
-  // {
-  //   path: 'feature',
-  //   canActivate: [AuthGuard],
-  //   loadChildren: () => import('./features/features.module').then(m => m.FeaturesModule),
-  // },
+  {
+    path: 'feature',
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./features/features.module').then(m => m.FeaturesModule),
+  },
   // {
   //   path: 'auth1',
   //   component: NbAuthComponent,
