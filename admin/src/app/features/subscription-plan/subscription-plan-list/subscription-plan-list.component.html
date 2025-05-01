@@ -1,0 +1,14 @@
+<nb-card>
+  <nb-card-header>
+    Subscription Plan List <button nbButton size="medium" style="float: right" (click)="navigateToAddTenant()"><nb-icon icon="plus"></nb-icon>Add Subscription Plan</button>
+  </nb-card-header>
+
+  <nb-card-body>
+    <ng2-smart-table
+      [settings]="settings"
+      [source]="source"
+      (custom)="onAction($event)"
+      >
+    </ng2-smart-table>
+  </nb-card-body>
+</nb-card>

@@ -7,14 +7,15 @@ const routes: Routes = [{
   path: '',
   component: FeaturesComponent,
   children: [
-    // {
-    //   path: 'dashboard',
-    //   component: DashboardComponent,
-    // },
     {
       path: 'tenant',
       loadChildren: () => import('./tenant/tenant.module')
         .then(m => m.TenantModule),
+    },
+    {
+      path: 'subscription-plan',
+      loadChildren: () => import('./subscription-plan/subscription-plan.module')
+        .then(m => m.SubscriptionPlanModule),
     },
     // {
     //   path: 'operation',
@@ -23,7 +24,7 @@ const routes: Routes = [{
     // },
     {
       path: '',
-      redirectTo: 'dashboard',
+      redirectTo: 'tenant',
       pathMatch: 'full',
     },
   ],

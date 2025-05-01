@@ -21,11 +21,11 @@ export class SubscriptionPlanService {
   getById(id: Number): Observable<ApiResponse<SubscriptionPlanVM>>{
     return this.http.get<ApiResponse<SubscriptionPlanVM>>(`${this.api}/${id}`);
   }
-  add(tenant: SubscriptionPlanModel): Observable<any>{
-    return this.http.post(`${this.api}`,tenant);
+  add(subscriptionPlan: SubscriptionPlanModel): Observable<any>{
+    return this.http.post(`${this.api}`,subscriptionPlan);
   }
-  update(booking: SubscriptionPlanModel): Observable<any>{
-    return this.http.put(`${this.api}`,booking);
+  update(subscriptionPlan: SubscriptionPlanModel): Observable<any>{
+    return this.http.put(`${this.api}/${subscriptionPlan.id}`,subscriptionPlan);
   }
   delete(id: Number): Observable<any>{
     return this.http.delete<any>(`${this.api}/${id}`);
