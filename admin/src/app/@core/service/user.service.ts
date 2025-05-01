@@ -4,6 +4,7 @@ import { Observable } from "rxjs";
 import { environment } from "../../../environments/environment";
 import { SubscriptionPlanModel, SubscriptionPlanVM } from "../model/subscription-plan";
 import { UserModel, UserVM } from "../model/user";
+import { ApiResponse } from "../model/api-response.model";
 @Injectable({
   providedIn: 'root'
 })
@@ -14,12 +15,12 @@ export class UserService {
 
   }
 
-  getAll(): Observable<UserVM[]>{
-    return this.http.get<UserVM[]>(`${this.api}`);
+  getAll(): Observable<ApiResponse<UserVM[]>>{
+    return this.http.get<ApiResponse<UserVM[]>>(`${this.api}`);
   }
 
-  getById(id: Number): Observable<UserVM>{
-    return this.http.get<UserVM>(`${this.api}/${id}`);
+  getById(id: Number): Observable<ApiResponse<UserVM>>{
+    return this.http.get<ApiResponse<UserVM>>(`${this.api}/${id}`);
   }
   add(tenant: SubscriptionPlanModel): Observable<any>{
     return this.http.post(`${this.api}`,tenant);

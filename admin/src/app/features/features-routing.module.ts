@@ -17,11 +17,11 @@ const routes: Routes = [{
       loadChildren: () => import('./subscription-plan/subscription-plan.module')
         .then(m => m.SubscriptionPlanModule),
     },
-    // {
-    //   path: 'operation',
-    //   loadChildren: () => import('./operation/operation.module')
-    //     .then(m => m.OperationModule),
-    // },
+    {
+      path: 'user',
+      loadChildren: () => import('./user/user.module')
+        .then(m => m.UserModule),
+    },
     {
       path: '',
       redirectTo: 'tenant',

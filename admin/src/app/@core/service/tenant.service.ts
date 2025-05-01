@@ -8,6 +8,7 @@ import { BookingModel } from "../model/booking-model";
 import { BookingPageModel } from "../model/booking-page-model";
 import { BookingViewModel } from "../model/booking-view-model";
 import { TenantModel, TenantViewModel } from "../model/tenant-view.model";
+import { ApiResponse } from "../model/api-response.model";
 @Injectable({
   providedIn: 'root'
 })
@@ -18,12 +19,12 @@ export class TenantService {
 
   }
 
-  getAll(): Observable<TenantViewModel[]>{
-    return this.http.get<TenantViewModel[]>(`${this.api}`);
+  getAll(): Observable<ApiResponse<TenantViewModel[]>>{
+    return this.http.get<ApiResponse<TenantViewModel[]>>(`${this.api}`);
   }
 
-  getTenantById(id: Number): Observable<BookingViewModel>{
-    return this.http.get<BookingViewModel>(`${this.api}/${id}`);
+  getTenantById(id: Number): Observable<ApiResponse<TenantViewModel>>{
+    return this.http.get<ApiResponse<TenantViewModel>>(`${this.api}/${id}`);
   }
   addTenant(tenant: TenantModel): Observable<any>{
     return this.http.post(`${this.api}`,tenant);

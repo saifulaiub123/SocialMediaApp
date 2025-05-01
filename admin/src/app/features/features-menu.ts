@@ -33,4 +33,20 @@ export const MENU_ITEMS: NbMenuItem[] = [
       },
     ],
   },
+  {
+    title: 'User',
+    icon: 'keypad-outline',
+    link: '/feature/user',
+    home: false,
+    children: [
+      {
+        title: 'Add User',
+        link: '/feature/user/add-edit/0',
+      },
+      {
+        title: 'List User',
+        link: '/feature/user/list',
+      },
+    ],
+  },
 ];
