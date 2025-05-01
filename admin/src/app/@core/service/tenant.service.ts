@@ -7,7 +7,7 @@ import { BookingFilterModel } from "../model/booking-filter-model";
 import { BookingModel } from "../model/booking-model";
 import { BookingPageModel } from "../model/booking-page-model";
 import { BookingViewModel } from "../model/booking-view-model";
-import { TenantViewModel } from "../model/tenant-view.model";
+import { TenantModel, TenantViewModel } from "../model/tenant-view.model";
 @Injectable({
   providedIn: 'root'
 })
@@ -18,26 +18,18 @@ export class TenantService {
 
   }
 
-  getInitialPageData(): Observable<BookingPageModel>{
-    return this.http.get<BookingPageModel>(`${this.api}/GetInitialPageData`);
-  }
   getAll(): Observable<TenantViewModel[]>{
     return this.http.get<TenantViewModel[]>(`${this.api}`);
   }
-  getBookingsByFilter(filter: BookingFilterModel): Observable<any>{
-    return this.http.post(`${this.api}/GetBookingsByFilter`,filter);
+
+  getTenantById(id: Number): Observable<BookingViewModel>{
+    return this.http.get<BookingViewModel>(`${this.api}/${id}`);
   }
-  getBookingsById(id: Number): Observable<BookingViewModel>{
-    return this.http.get<BookingViewModel>(`${this.api}/GetBookingById?id=`+id);
+  addTenant(tenant: TenantModel): Observable<any>{
+    return this.http.post(`${this.api}`,tenant);
   }
-  getBookingsByOperationId(operationId: Number): Observable<BookingViewModel[]>{
-    return this.http.get<BookingViewModel[]>(`${this.api}/GetBookingsByOperationId?operationId=`+operationId);
-  }
-  addBooking(booking: BookingModel): Observable<any>{
-    return this.http.post(`${this.api}/AddBooking`,booking);
-  }
-  updateBooking(booking: BookingModel): Observable<any>{
-    return this.http.patch(`${this.api}/UpdateBooking`,booking);
+  updateTenant(tenant: TenantModel): Observable<any>{
+    return this.http.put(`${this.api}/${tenant.id}`,tenant);
   }
   deleteTenant(id: Number): Observable<any>{
     return this.http.delete<any>(`${this.api}/${id}`);

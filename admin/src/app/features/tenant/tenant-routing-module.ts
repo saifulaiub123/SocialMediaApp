@@ -12,7 +12,7 @@ const routes: Routes = [{
       component: TenantListComponent,
     },
     {
-      path: 'add-edit',
+      path: 'add-edit/:id',
       component: TenantAddEditComponent,
     },
     {

@@ -1,34 +1,74 @@
 <div class="row">
   <div class="col-md-6">
     <nb-card>
-      <nb-card-header>Add Tenant</nb-card-header>
+      <nb-card-header *ngIf="id === 0">Add Tenant</nb-card-header>
+      <nb-card-header *ngIf="id > 0">Edit Tenant</nb-card-header>
       <nb-card-body>
-        <form>
+        <form [formGroup]="form" (ngSubmit)="save()">
           <div class="form-group row">
             <label for="inputEmail1" class="label col-sm-3 col-form-label">Name</label>
             <div class="col-sm-9">
-              <input type="text" nbInput fullWidth id="inputName" placeholder="Name">
+              <input
+                type="text"
+                nbInput
+                fullWidth id="inputName"
+                placeholder="Name"
+                formControlName="name"
+                [attr.aria-invalid]="name.invalid && name.touched ? true : null"
+                >
+                <ngx-validation-message label="Name"
+                  [showRequired]="name?.errors?.required && name.touched">
+                </ngx-validation-message>
             </div>
           </div>
           <div class="form-group row">
             <label for="inputEmail1" class="label col-sm-3 col-form-label">Description</label>
             <div class="col-sm-9">
-              <input type="text" nbInput fullWidth id="inputDescription" placeholder="Description">
+              <input type="text" nbInput fullWidth id="inputDescription" placeholder="Description" formControlName="description">
             </div>
           </div>
           <div class="form-group row">
             <label class="col-sm-3 label">Subscription Plan</label>
             <div class="col-sm-9">
-              <nb-radio-group>
-                <nb-radio>Option 1</nb-radio>
-                <nb-radio>Option 2</nb-radio>
-                <nb-radio disabled>Disabled Option</nb-radio>
-              </nb-radio-group>
+              <nb-select
+                [size]="'medium'"
+                [fullWidth]="'true'"
+                id="inputSubscriptionPlanId"
+                formControlName="subscriptionPlanId"
+                placeholder="Select Subscription Plan"
+                [attr.aria-invalid]="subscriptionPlanId.invalid && subscriptionPlanId.touched ? true : null"
+                >
+                <nb-option *ngFor="let plan of subscriptionPlans" [value]="plan.Id">{{plan.Name}}</nb-option>
+              </nb-select>
+              <ngx-validation-message label="Subscription Plan"
+                  [showRequired]="subscriptionPlanId?.errors?.required && name.touched">
+              </ngx-validation-message>
             </div>
           </div>
           <div class="form-group row">
+            <label class="col-sm-3 label">Expiry Date</label>
+            <div class="col-sm-9">
+              <input
+               nbInput
+               [fullWidth]="'true'"
+               placeholder="Select Expiry Date"
+               [nbDatepicker]="formpicker"
+               formControlName="expiresIn"
+               >
+              <nb-datepicker #formpicker></nb-datepicker>
+              <ngx-validation-message label="Subscription Plan"
+                  [showRequired]="subscriptionPlanId?.errors?.required && name.touched">
+              </ngx-validation-message>
+            </div>
+          </div>
+
+          <div class="form-group row">
             <div class="offset-sm-3 col-sm-9">
-              <button type="submit" nbButton status="primary">Sign in</button>
+              <button
+              type="submit"
+              nbButton status="primary"
+              [disabled]="submitted || !form.valid"
+              >Save</button>
             </div>
           </div>
         </form>

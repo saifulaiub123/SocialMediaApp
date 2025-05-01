@@ -1,7 +1,17 @@
 export interface TenantViewModel {
-      Id? : number;
-      Name : string;
-      Description? : string;
-      SubscriptionPlanId? : number;
-      SubscriptionPlan? : string;
+      id? : number;
+      name : string;
+      description? : string;
+      subscriptionPlanId? : number;
+      subscriptionPlan? : string;
+      expiresIn? : Date;
 }
+export interface TenantModel {
+  id? : number;
+  name : string;
+  description? : string;
+  subscriptionPlanId? : number;
+  expiresIn? : Date;
+
+}
+

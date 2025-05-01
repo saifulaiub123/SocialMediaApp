@@ -94,7 +94,7 @@ export class TenantListComponent implements OnInit {
 
   onAction(event: any): void {
     if (event.action === 'customEdit') {
-      this._router.navigate(['/edit', event.data.id]);
+      this._router.navigateByUrl(`/feature/tenant/add-edit/${event.data.Id}`);
     }
     else if (event.action === 'customDelete') {
      this.onDeleteConfirm(event);
@@ -103,7 +103,7 @@ export class TenantListComponent implements OnInit {
 
   navigateToAddTenant()
   {
-    this._router.navigateByUrl("/feature/tenant/add-edit");
+    this._router.navigateByUrl("/feature/tenant/add-edit/0");
   }
 
   onDeleteConfirm(event): void {
